@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/PEG4/Documents/U/9 semestre/DELE/DB1.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1303"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,14:mainadministrators"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">-- Crear la base de datos SQLite
+CREATE TABLE students (
+    student_id INTEGER PRIMARY KEY,
+    name TEXT,
+    email TEXT,
+    phone_number TEXT,
+    address TEXT,
+    date_of_birth DATE,
+    course_id INTEGER,
+    FOREIGN KEY(course_id) REFERENCES courses(course_id)
+);
+
+CREATE TABLE professors (
+    professor_id INTEGER PRIMARY KEY,
+    name TEXT,
+    email TEXT,
+    phone_number TEXT,
+    department TEXT
+);
+
+CREATE TABLE administrators (
+    admin_id INTEGER PRIMARY KEY,
+    name TEXT,
+    email TEXT,
+    department TEXT
+);
+
+CREATE TABLE courses (
+    course_id INTEGER PRIMARY KEY,
+    course_name TEXT,
+    department TEXT,
+    professor_id INTEGER,
+    start_date DATE,
+    end_date DATE,
+    FOREIGN KEY(professor_id) REFERENCES professors(professor_id)
+);
+
+-- Insertar datos
+INSERT INTO professors (name, email, phone_number, department) VALUES ('Sergio', 'sergio@gmail.com', '3152828280', 'Mathematics');
+INSERT INTO professors (name, email, phone_number, department) VALUES ('Andrés', 'andres@gmail.com', '3142828280', 'Physics');
+INSERT INTO professors (name, email, phone_number, department) VALUES ('David', 'david@gmail.com', '3132828280', 'Chemistry');
+
+INSERT INTO courses (course_name, department, professor_id, start_date, end_date) VALUES ('Calculus', 'Mathematics', 1, '2024-02-01', '2024-05-30');
+INSERT INTO courses (course_name, department, professor_id, start_date, end_date) VALUES ('Physics I', 'Physics', 2, '2024-02-01', '2024-05-30');
+INSERT INTO courses (course_name, department, professor_id, start_date, end_date) VALUES ('Organic Chemistry', 'Chemistry', 3, '2024-02-01', '2024-05-30');
+
+INSERT INTO students (name, email, phone_number, address, date_of_birth, course_id) VALUES ('Lopez', 'Lopez@gmail.com', '3112828280', '123 Main St', '2000-01-15', 1);
+INSERT INTO students (name, email, phone_number, address, date_of_birth, course_id) VALUES ('Ajiaco', 'Ajiaco@gmail.com', '3112828240', '456 Elm St', '2001-03-20', 2);
+INSERT INTO students (name, email, phone_number, address, date_of_birth, course_id) VALUES ('Pineros', 'Pineros@gmail.com', '3112828284', '789 Oak St', '2002-05-25', 3);
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
